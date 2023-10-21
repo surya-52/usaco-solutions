@@ -1,0 +1,90 @@
+#include <bits/stdc++.h>
+#include <ext/pb_ds/assoc_container.hpp>
+#include <ext/pb_ds/tree_policy.hpp>
+using namespace __gnu_pbds;
+using namespace std;
+#include <numeric>
+#define ff              first
+#define ss              second
+// #define int             long long
+#define pb              push_back
+#define mp              make_pair
+#define pii             pair<int,int>
+#define vi              vector<int>
+#define mii             map<int,int>
+#define pqb             priority_queue<int>
+#define pqs             priority_queue<int,vi,greater<int> >
+#define setbits(x)      __builtin_popcountll(x)
+#define zrobits(x)      __builtin_ctzll(x)
+#define mod             1000000007
+#define inf             1e18
+#define ps(x,y)         fixed<<setprecision(y)<<x
+#define mk(arr,n,type)  type *arr=new type[n];
+#define w(x)            int x; cin>>x; while(x--)
+mt19937                 rng(chrono::steady_clock::now().time_since_epoch().count());
+ 
+typedef tree<int, null_type, less<int>, rb_tree_tag, tree_order_statistics_node_update> pbds;
+ 
+ 
+void c_p_c()
+{
+    ios_base::sync_with_stdio(0); cin.tie(0); cout.tie(0);
+#ifndef ONLINE_JUDGE
+    freopen("traffic.in", "r", stdin);
+    freopen("traffic.out", "w", stdout);
+#endif
+}
+
+
+signed main()
+{   
+    c_p_c();
+    int t = 1;
+    // cin >> t;
+    while(t--){
+      int n;
+      cin >> n;
+      vector<pair<string,pair<int,int>>> v(n);
+      for(int i = 0 ; i < n ; i++){
+        cin >> v[i].first >> v[i].second.first >> v[i].second.second;
+      }
+      int a1 = -1e9, a2 = 1e9;
+      for(int i = n -1 ; i >= 0 ; i--){
+        if(v[i].first == "none"){
+            a1 = max(a1,v[i].second.first);
+            a2 = min(a2,v[i].second.second);
+        }
+         else if(v[i].first=="on"){
+            a1 -= v[i].second.second;
+            a1 = max(a1,(int)0);
+            a2 -= v[i].second.first;
+         }
+         else{
+            a1 += v[i].second.first;
+            a2 += v[i].second.second;
+         }
+      }
+      cout<<a1<<" "<<a2<<endl;
+      int a3 = -1e9, a4 = 1e9;
+      for(int i = 0 ; i < n ; i++){
+        if(v[i].first=="none") {
+            a3 = max(a3,v[i].second.first);
+            a4 = min(a4,v[i].second.second);
+         }
+         else if(v[i].first=="on"){
+            a3 += v[i].second.first;
+            a4 += v[i].second.second;
+         }
+         else{
+            a3 -= v[i].second.second;
+            a3 = max(a3,(int)0);
+            a4 -= v[i].second.first;
+         }
+     
+      }
+      cout<<a3<<" "<<a4<<endl;
+
+      }
+      
+    return 0;
+      }
