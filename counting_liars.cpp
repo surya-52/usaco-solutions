@@ -50,10 +50,10 @@ int32_t main()
         cin >> c;
         cin >> v[i].first;
         if(c == 'G'){
-            v[i].second = 1;
+            v[i].second = 0;
         }
         else {
-            v[i].second = 0;
+            v[i].second = 1;
         }
     }
     sort(v.begin(),v.end());
@@ -61,10 +61,10 @@ int32_t main()
     for(int i = 0 ; i < n ; i++){
        int ct = 0;
        for(int j = 0 ; j < i ; j++){
-        if(v[j].second==0) ct++;
-       }
-       for(int j = i+1 ; j < n ; j++){
         if(v[j].second==1) ct++;
+       }
+       for(int j = i ; j < n ; j++){
+        if(v[j].second==0) ct++;
        }
        ans = min(ans,ct);
     }
