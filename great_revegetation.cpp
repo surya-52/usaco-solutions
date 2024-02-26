@@ -46,27 +46,25 @@ signed main()
     while(t--){
     int n,m;
     cin >> n >> m;
-    vector<pair<int,int>> v(m);
-    for(int i = 0; i < m; i++) cin >> v[i].first >> v[i].second;
+    vector<int> adj[n+1];
+    for(int i = 0 ; i < m; i++){
+        int a,b;
+        cin >> a >> b;
+        adj[a].pb(b);
+        adj[b].pb(a);
+    }
     vector<int> ans(n+1,5);
-    for(int i = 1 ; i <= n; i++){
-        set<int> temp;
-      for(int j = 0; j < m; j++){
-        if(v[j].first == i){
-            temp.insert(ans[v[j].second]);
+    for(int i = 1; i <= n; i++){
+        set<int> s;
+        for(auto x:adj[i]) s.insert(ans[x]);
+        int l = 1;
+        for(auto x:s){
+            if(l!=x){
+                break;
+            }
+            else l++;
         }
-        else if(v[j].second == i){
-            temp.insert(ans[v[j].first]);
-        }
-      }
-      int x = 1;
-      for(auto it:temp){
-        if(it!=x){
-            break;
-        }
-        else x++;
-      }
-      ans[i] = x;
+        ans[i] = l;
     }
     for(int i = 1 ; i <= n; i++) cout<<ans[i];
         cout<<endl;
