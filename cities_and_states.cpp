@@ -47,23 +47,30 @@ signed main()
     int n;
     cin >> n;
     vector<pair<string,string>> v(n);
+    map<string,multiset<string>> m2;
     for(int i = 0 ; i < n; i++){
-        string s;
-        cin >> s;
-        v[i].first = "";
-        v[i].first += s[0];
-        v[i].first += s[1];
-      cin >> v[i].second;
-      // cout<<v[i].first<<" "<<v[i].second;
+      cin >> v[i].first >> v[i].second;
+       string temp = "";
+       temp += v[i].first[0];
+       temp += v[i].first[1];
+       m2[v[i].second].insert(temp);
     }
-    map<string,int> m;
     int ans = 0;
+    // for(auto x:m2){
+    //     cout<<x.first<<endl;
+    //     for(auto it:x.second){
+    //         cout<<it<<" ";
+    //     }
+    //     cout<<endl;
+    // }
     for(int i = 0 ; i < n; i++){
-        if(v[i].first != v[i].second)ans += m[v[i].second + v[i].first];
-        m[v[i].first + v[i].second]++;
+        string temp = "";
+        temp += v[i].first[0];
+        temp += v[i].first[1];
+        // cout<<temp<<" "<<v[i].second<<" ";
+            if(temp != v[i].second) ans+=m2[temp].count(v[i].second);
     }
-    cout<<ans<<endl;
-
+    cout<<ans/2<<endl;
 
 
    }
