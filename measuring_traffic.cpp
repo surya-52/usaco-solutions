@@ -48,7 +48,7 @@ signed main()
       for(int i = 0 ; i < n ; i++){
         cin >> v[i].first >> v[i].second.first >> v[i].second.second;
       }
-      int a1 = -1e9, a2 = 1e9;
+      int a1 = 0, a2 = 1e9;
       for(int i = n -1 ; i >= 0 ; i--){
         if(v[i].first == "none"){
             a1 = max(a1,v[i].second.first);
@@ -65,7 +65,7 @@ signed main()
          }
       }
       cout<<a1<<" "<<a2<<endl;
-      int a3 = -1e9, a4 = 1e9;
+      int a3 = 0, a4 = 1e9;
       for(int i = 0 ; i < n ; i++){
         if(v[i].first=="none") {
             a3 = max(a3,v[i].second.first);
